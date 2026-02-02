@@ -8,11 +8,10 @@ if score >= 0 and score <= 100:
   print("Valid score")
 else:
   print("Invalid score")
-
-bool(False)
-bool(None)
-bool(0)
-bool("")
-bool(())
-bool([])
-bool({})
+for i in range(1):
+    bool(False)
+    bool(None)
+    bool(0)
+    bool("")
+    bool(())
+    bool([])
