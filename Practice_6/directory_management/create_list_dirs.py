@@ -1,16 +1,18 @@
 import os
 import shutil
+from pathlib import Path
 
-path_to_create = os.path.join("data", "reports", "2026", "monthly")
 
-try:
-    os.makedirs(path_to_create, exist_ok=True)
-    print(f"Directory ready: {path_to_create}")
-except FileExistsError:
-    print(f"Error: {path_to_create} is an existing file, not a directory.")
-except OSError as e:
-    print(f"An OS error occurred: {e}")
+Path("parent/child/grandchild").mkdir(parents=True, exist_ok=True)
+print("Directories created.")
 
+
+print("Contents of current directory:", os.listdir('.'))
+
+
+Path("test_file.txt").touch()
+txt_files = [f for f in os.listdir('.') if f.endswith('.txt')]
+print(f"Found text files: {txt_files}")
 
 
 shutil.copy("test_file.txt", "parent/child/test_file_copy.txt")
