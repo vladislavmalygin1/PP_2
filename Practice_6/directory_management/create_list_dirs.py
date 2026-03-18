@@ -1,22 +1,18 @@
 import os
 import shutil
-from pathlib import Path
+
+path_to_create = os.path.join("data", "reports", "2026", "monthly")
+
+try:
+    os.makedirs(path_to_create, exist_ok=True)
+    print(f"Directory ready: {path_to_create}")
+except FileExistsError:
+    print(f"Error: {path_to_create} is an existing file, not a directory.")
+except OSError as e:
+    print(f"An OS error occurred: {e}")
 
 
-Path("parent/child/grandchild").mkdir(parents=True, exist_ok=True)
-print("Directories created.")
 
-
-print("Contents of current directory:", os.listdir('.'))
-
-#Find files by extension (e.g., all .txt files)
-
-Path("test_file.txt").touch()
-txt_files = [f for f in os.listdir('.') if f.endswith('.txt')]
-print(f"Found text files: {txt_files}")
-
-#Move/Copy files
-#Copying the file into our new nested directory
 shutil.copy("test_file.txt", "parent/child/test_file_copy.txt")
 
 shutil.move("test_file.txt", "parent/test_file_moved.txt")
