@@ -1,5 +1,5 @@
-
-CREATE OR REPLACE FUNCTION search_contacts(pattern TEXT)
+-- Pattern matching function
+CREATE OR REPLACE FUNCTION public.search_contacts(pattern TEXT)
 RETURNS TABLE(id INT, username VARCHAR, phone VARCHAR) AS $$
 BEGIN
     RETURN QUERY 
@@ -10,8 +10,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Function for pagination
-CREATE OR REPLACE FUNCTION get_contacts_paged(p_limit INT, p_offset INT)
+-- Pagination function
+CREATE OR REPLACE FUNCTION public.get_contacts_paged(p_limit INT, p_offset INT)
 RETURNS TABLE(id INT, username VARCHAR, phone VARCHAR) AS $$
 BEGIN
     RETURN QUERY 
