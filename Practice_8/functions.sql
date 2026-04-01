@@ -16,10 +16,13 @@ $$ LANGUAGE plpgsql;
 
 -- 3. Create Pagination Function
 CREATE OR REPLACE FUNCTION public.get_paged(p_limit INT, p_offset INT)
-RETURNS TABLE(id INT, username VARCHAR, phone VARCHAR) AS $$
+RETURNS TABLE(display_id BIGINT, username VARCHAR, phone VARCHAR) AS $$
 BEGIN
     RETURN QUERY 
-    SELECT p.id, p.username, p.phone 
+    SELECT 
+        ROW_NUMBER() OVER (ORDER BY p.id) as display_id, -- Creates 1, 2, 3...
+        p.username, 
+        p.phone 
     FROM phonebook p
     ORDER BY p.id
     LIMIT p_limit OFFSET p_offset;
