@@ -9,25 +9,21 @@ LANGUAGE plpgsql AS $$
 DECLARE
     i INT;
 BEGIN
-    -- Temporary table to hold incorrect data
     CREATE TEMP TABLE IF NOT EXISTS bulk_errors (name TEXT, phone TEXT) ON COMMIT DROP;
     DELETE FROM bulk_errors; 
-
     FOR i IN 1 .. array_upper(p_names, 1) LOOP
-        -- Validation: Phone must be digits only and length >= 10
+        
         IF p_phones[i] ~ '^[0-9]+$' AND LENGTH(p_phones[i]) >= 10 THEN
             INSERT INTO phonebook (username, phone) 
             VALUES (p_names[i], p_phones[i])
             ON CONFLICT (username) DO UPDATE SET phone = EXCLUDED.phone;
         ELSE
-            -- Collect incorrect data
             INSERT INTO bulk_errors VALUES (p_names[i], p_phones[i]);
         END IF;
     END LOOP;
 END;
 $$;
 
--- 3. Upsert and Delete Procedures
 CREATE OR REPLACE PROCEDURE public.upsert_contact(p_name TEXT, p_phone TEXT)
 LANGUAGE plpgsql AS $$
 BEGIN
