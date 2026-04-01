@@ -1,9 +1,9 @@
--- 1. Drop existing procedures
+
 DROP PROCEDURE IF EXISTS public.upsert_contact(text, text);
 DROP PROCEDURE IF EXISTS public.bulk_insert_with_errors(text[], text[]);
 DROP PROCEDURE IF EXISTS public.delete_by_id(text);
 
--- 2. Bulk Insert with Loop, IF Validation, and Error Tracking
+
 CREATE OR REPLACE PROCEDURE public.bulk_insert_with_errors(p_names TEXT[], p_phones TEXT[])
 LANGUAGE plpgsql AS $$
 DECLARE
