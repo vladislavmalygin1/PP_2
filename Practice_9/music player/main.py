@@ -2,7 +2,6 @@ import pygame
 import os
 from player import MusicPlayer
 
-
 WIDTH, HEIGHT = 600, 320
 BG_COLOR = (20, 20, 20)
 ACCENT_COLOR = (0, 255, 150)  
@@ -19,7 +18,6 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Python Keyboard Music Player")
     
-    # Use a clean system font
     font_main = pygame.font.SysFont("Segoe UI", 24, bold=True)
     font_sub = pygame.font.SysFont("Segoe UI", 18)
     clock = pygame.time.Clock()

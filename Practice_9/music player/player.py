@@ -11,8 +11,8 @@ class MusicPlayer:
         self.is_playing = False
         self.is_paused = False
         
-        self.song_length = 0      # Total duration of the file
-        self.position_offset = 0  # To track time across pauses/stops if needed
+        self.song_length = 0      
+        self.position_offset = 0
         
         if os.path.exists(music_dir):
             self.playlist = [f for f in os.listdir(music_dir) if f.endswith(('.mp3', '.wav'))]
@@ -40,7 +40,6 @@ class MusicPlayer:
             self.is_paused = False
 
     def load_track(self):
-        """Loads the file and calculates its total length."""
         path = os.path.join(self.music_dir, self.playlist[self.current_index])
         pygame.mixer.music.load(path)
 
@@ -48,7 +47,6 @@ class MusicPlayer:
         self.song_length = temp_sound.get_length()
 
     def stop(self):
-        """Stops playback and resets position."""
         pygame.mixer.music.stop()
         self.is_playing = False
         self.is_paused = False
@@ -64,12 +62,10 @@ class MusicPlayer:
         self.reset_and_play()
 
     def reset_and_play(self):
-        """Helper to reset states when changing tracks."""
         self.stop()
         self.play_pause()
 
     def get_progress(self):
-        """Returns current_seconds, total_seconds, and a 0.0-1.0 percentage."""
         if not self.is_playing and not self.is_paused:
             return 0, self.song_length, 0
 
