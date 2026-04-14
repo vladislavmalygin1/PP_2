@@ -5,7 +5,7 @@ from player import MusicPlayer
 def main():
     pygame.init()
     screen = pygame.display.set_mode((600, 300))
-    pygame.display.set_caption("Pro Keyboard Music Player")
+    pygame.display.set_caption("Keyboard Music Player")
     font = pygame.font.SysFont("Segoe UI", 22)
     clock = pygame.time.Clock()
 
