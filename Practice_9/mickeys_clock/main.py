@@ -3,7 +3,7 @@ import datetime
 import os
 from clock import rotate_center
 
-WIDTH, HEIGHT = 700, 700
+WIDTH, HEIGHT = 650, 650
 FPS = 60
 
 pygame.init()
@@ -16,7 +16,7 @@ IMG_DIR = os.path.join(BASE_PATH, "images")
 
 try:
     mickey_body = pygame.transform.scale(pygame.image.load(os.path.join(IMG_DIR, "main-clock.png")).convert_alpha(), (600, 600))
-    right_hand = pygame.transform.scale(pygame.image.load(os.path.join(IMG_DIR, "right-hand.png")).convert_alpha(), (230, 500))
+    right_hand = pygame.transform.scale(pygame.image.load(os.path.join(IMG_DIR, "right-hand.png")).convert_alpha(), (200, 400))
     left_hand = pygame.transform.scale(pygame.image.load(os.path.join(IMG_DIR, "left-hand.png")).convert_alpha(), (230, 500))
 except pygame.error as e:
     print(f"Loading error: {e}")
