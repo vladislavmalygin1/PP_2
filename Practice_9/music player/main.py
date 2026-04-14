@@ -2,14 +2,28 @@ import pygame
 import os
 from player import MusicPlayer
 
+
+WIDTH, HEIGHT = 600, 320
+BG_COLOR = (20, 20, 20)
+ACCENT_COLOR = (0, 255, 150)  
+TEXT_COLOR = (230, 230, 230)
+BAR_BG = (60, 60, 60)
+
+def format_time(seconds):
+    m, s = divmod(int(seconds), 60)
+    return f"{m:02d}:{s:02d}"
+
 def main():
+
     pygame.init()
-    screen = pygame.display.set_mode((600, 300))
-    pygame.display.set_caption("Keyboard Music Player")
-    font = pygame.font.SysFont("Segoe UI", 22)
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Python Keyboard Music Player")
+    
+    # Use a clean system font
+    font_main = pygame.font.SysFont("Segoe UI", 24, bold=True)
+    font_sub = pygame.font.SysFont("Segoe UI", 18)
     clock = pygame.time.Clock()
 
-    
     base_dir = os.path.dirname(os.path.abspath(__file__))
     music_dir = os.path.join(base_dir, "music")
     
@@ -17,7 +31,7 @@ def main():
     
     running = True
     while running:
-        
+        # 3. Event Handling (The "Controller")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -34,23 +48,35 @@ def main():
                 elif event.key == pygame.K_q:
                     running = False
 
-        
-        screen.fill((25, 25, 25)) # Dark background
+        screen.fill(BG_COLOR)
         
         track_name, status = player.get_info()
+        current_s, total_s, percent = player.get_progress()
+
+        track_surf = font_main.render(f"Track: {track_name}", True, TEXT_COLOR)
+        status_surf = font_sub.render(f"Status: {status}", True, ACCENT_COLOR if player.is_playing else (180, 0, 0))
         
+        bar_x, bar_y = 50, 180
+        bar_w, bar_h = 500, 8
+        # Background of the bar
+        pygame.draw.rect(screen, BAR_BG, (bar_x, bar_y, bar_w, bar_h), border_radius=4)
+
+        if total_s > 0:
+            pygame.draw.rect(screen, ACCENT_COLOR, (bar_x, bar_y, int(bar_w * percent), bar_h), border_radius=4)
+
+        time_str = f"{format_time(current_s)} / {format_time(total_s)}"
+        time_surf = font_sub.render(time_str, True, (150, 150, 150))
         
-        title_surf = font.render(f"Track: {track_name}", True, (255, 255, 255))
-        status_surf = font.render(f"Status: {status}", True, (0, 255, 150) if player.is_playing else (255, 100, 100))
-        hint_surf = font.render("[P] Play/Pause  [S] Stop  [N] Next  [B] Back  [Q] Quit", True, (150, 150, 150))
-        
-        screen.blit(title_surf, (40, 60))
-        screen.blit(status_surf, (40, 110))
-        screen.blit(hint_surf, (40, 220))
+        controls_hint = font_sub.render("[P] Play/Pause  [S] Stop  [N] Next  [B] Back  [Q] Quit", True, (100, 100, 100))
+
+        screen.blit(track_surf, (50, 60))
+        screen.blit(status_surf, (50, 100))
+        screen.blit(time_surf, (50, 200))
+        screen.blit(controls_hint, (50, 260))
 
         
         pygame.display.flip()
-        clock.tick(60) 
+        clock.tick(60)  
 
     pygame.quit()
 
