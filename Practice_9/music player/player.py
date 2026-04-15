@@ -81,4 +81,4 @@ class MusicPlayer:
             return "No Music Found", "Error"
         
         status = "Playing" if self.is_playing else ("Paused" if self.is_paused else "Stopped")
-        return self.playlist[self.current_index], status
+        return self.playlist[self.current_index], status, self.current_index

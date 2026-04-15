@@ -48,10 +48,10 @@ def main():
 
         screen.fill(BG_COLOR)
         
-        track_name, status = player.get_info()
+        track_name, status, cur_index = player.get_info()
         current_s, total_s, percent = player.get_progress()
 
-        track_surf = font_main.render(f"Track: {track_name}", True, TEXT_COLOR)
+        track_surf = font_main.render(f"Track {cur_index + 1}: {track_name}", True, TEXT_COLOR)
         status_surf = font_sub.render(f"Status: {status}", True, ACCENT_COLOR if player.is_playing else (180, 0, 0))
         
         bar_x, bar_y = 50, 180
