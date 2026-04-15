@@ -3,7 +3,7 @@ from ball import Ball
 
 def main():
     pygame.init()
-    width, height = 400, 300
+    width, height = 600, 600
     screen = pygame.display.set_mode((width, height))
     clock = pygame.time.Clock()
     
@@ -26,7 +26,7 @@ def main():
         my_ball.draw(screen)
         
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(20)
 
     pygame.quit()
 
