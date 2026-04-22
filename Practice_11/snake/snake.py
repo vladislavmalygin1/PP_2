@@ -8,12 +8,13 @@ pygame.init()
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 400
 BLOCK_SIZE = 20
-WHITE, RED, GREEN, BLACK, GOLD = (255,255,255), (213,50,80), (0,255,0), (0,0,0), (255,215,0)
+WHITE, RED, GREEN, BLACK, GOLD, BLUE = (255,255,255), (213,50,80), (0,255,0), (0,0,0), (255,215,0), (0, 0, 255)
 
 # Food Data: Weight and lifespan in milliseconds
 FOOD_TYPES = [
     {"weight": 1, "color": RED, "timer": 10000},  # Normal
-    {"weight": 3, "color": GOLD, "timer": 5000}   # Bonus (disappears faster)
+    {"weight": 3, "color": GOLD, "timer": 5000},   # Bonus (disappears faster)
+    {"weight": 5, "color": BLUE, "timer": 3000}
 ]
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
