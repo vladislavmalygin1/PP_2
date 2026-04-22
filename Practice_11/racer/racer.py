@@ -91,9 +91,9 @@ class Player(pygame.sprite.Sprite):
     def move(self):
         pressed_keys = pygame.key.get_pressed()
         if self.rect.left > 0 and pressed_keys[K_LEFT]:
-            self.rect.move_ip(-5, 0)
+            self.rect.move_ip(-SPEED, 0)
         if self.rect.right < SCREEN_WIDTH and pressed_keys[K_RIGHT]:
-            self.rect.move_ip(5, 0)
+            self.rect.move_ip(SPEED, 0)
 
 # Sprite Setup - IMPORTANT: Initialize E1 first so C1 can reference it
 E1 = Enemy()
@@ -129,12 +129,16 @@ while True:
             SPEED += 1
 
     # Collision Check
-    if P1.rect.inflate(-20, -20).colliderect(E1.rect.inflate(-20, -20)):
+    if P1.rect.inflate(-40, -20).colliderect(E1.rect.inflate(-40, -20)):
         pygame.mixer.Sound(os.path.abspath(r"C:\Users\Bull\Desktop\PP_2\Practice1\Peactice_10\racer\sound\crash.mp3")).play()
         time.sleep(0.5)
+                
         DISPLAYSURF.fill(RED)
         DISPLAYSURF.blit(game_over, (30, 250))
         pygame.display.update()
+        
+        for entity in all_sprites:
+            entity.kill() 
         time.sleep(2)
         pygame.quit()
         sys.exit()        
