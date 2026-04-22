@@ -19,9 +19,9 @@ WHITE = (255, 255, 255)
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 600
 SPEED = 5
-SCORE = 0      # Cars passed
-COINS = 0      # Total coin weight collected
-COIN_WEIGHTS = [1, 5, 10] # Different weight possibilities
+SCORE = 0      
+COINS = 0      
+COIN_WEIGHTS = [1, 5, 10] 
 
 # Setting up Fonts
 font_small = pygame.font.SysFont("Verdana", 20)
@@ -29,7 +29,7 @@ game_over = pygame.font.SysFont("Verdana", 60).render("Game Over", True, BLACK)
 
 # Display Setup
 DISPLAYSURF = pygame.display.set_mode((400, 600))
-pygame.display.set_caption("Racer Game - Weighted Coins")
+pygame.display.set_caption("Racer Game - Safe Spawning")
 
 # Load Background
 path = os.path.abspath(r"C:\Users\Bull\Desktop\PP_2\Practice1\Peactice_10\racer\imagess\road.png")
@@ -52,23 +52,28 @@ class Enemy(pygame.sprite.Sprite):
             self.rect.center = (random.randint(40, SCREEN_WIDTH - 40), 0)
 
 class Coin(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, enemy):
         super().__init__()
-        # Load the base image
         self.original_image = pygame.image.load(os.path.abspath(r"C:\Users\Bull\Desktop\PP_2\Practice1\Peactice_10\racer\imagess\coin.png")).convert_alpha()
+        self.enemy = enemy 
         self.image = self.original_image
         self.rect = self.image.get_rect()
-        self.weight = 1
         self.reset()
 
     def reset(self):
-        """Randomly generates coin weight and position"""
+        """Finds a spawn point that doesn't overlap with the enemy car"""
         self.weight = random.choice(COIN_WEIGHTS)
-        # Visual scaling: bigger coins have higher weight
         size = 20 + (self.weight * 2)
         self.image = pygame.transform.scale(self.original_image, (size, size))
         self.rect = self.image.get_rect()
-        self.rect.center = (random.randint(40, SCREEN_WIDTH - 40), 0)
+
+        # Safe Spawning Logic
+        found_safe_spot = False
+        while not found_safe_spot:
+            self.rect.center = (random.randint(40, SCREEN_WIDTH - 40), random.randint(-100, 0))
+            # Check against enemy with a 40px buffer
+            if not self.rect.colliderect(self.enemy.rect.inflate(40, 40)):
+                found_safe_spot = True
 
     def move(self):
         self.rect.move_ip(0, SPEED)
@@ -90,10 +95,10 @@ class Player(pygame.sprite.Sprite):
         if self.rect.right < SCREEN_WIDTH and pressed_keys[K_RIGHT]:
             self.rect.move_ip(5, 0)
 
-# Sprite Setup
-P1 = Player()
+# Sprite Setup - IMPORTANT: Initialize E1 first so C1 can reference it
 E1 = Enemy()
-C1 = Coin()
+C1 = Coin(E1)
+P1 = Player()
 
 enemies = pygame.sprite.Group(E1)
 coins_group = pygame.sprite.Group(C1)
@@ -115,13 +120,11 @@ while True:
         DISPLAYSURF.blit(entity.image, entity.rect)
         entity.move()
 
-    # Coin Collection with Scaling Difficulty
+    # Coin Collection
     if pygame.sprite.spritecollide(P1, coins_group, False):
         old_coins = COINS
         COINS += C1.weight
         C1.reset()
-        
-        # Increase Enemy speed every 10 weight units
         if COINS // 10 > old_coins // 10:
             SPEED += 1
 
