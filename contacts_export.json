@@ -1,0 +1,118 @@
+[
+    {
+        "name": "Alice Johnson",
+        "email": "alice.work@gmail.com",
+        "birthday": "2001-05-15",
+        "group": "Friend",
+        "created_at": "2026-04-28T20:30:48.738910",
+        "phones": [
+            {
+                "phone": "+77011234567",
+                "type": "mobile"
+            },
+            {
+                "phone": "+77271234567",
+                "type": "work"
+            }
+        ]
+    },
+    {
+        "name": "Bob Smith",
+        "email": "bob@company.com",
+        "birthday": "1999-09-21",
+        "group": "Work",
+        "created_at": "2026-04-28T20:30:48.738910",
+        "phones": [
+            {
+                "phone": "+77017654321",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "name": "Carol White",
+        "email": "carol@yahoo.com",
+        "birthday": "2002-12-03",
+        "group": "Family",
+        "created_at": "2026-04-28T20:30:48.738910",
+        "phones": [
+            {
+                "phone": "+77019876543",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "Mukhamedali Beisaly",
+        "email": "asdas@fdfd.com",
+        "birthday": "2006-03-18",
+        "group": "4",
+        "created_at": "2026-04-28T20:30:48.738910",
+        "phones": [
+            {
+                "phone": "8778486748",
+                "type": "work"
+            }
+        ]
+    },
+    {
+        "name": "Paul",
+        "email": null,
+        "birthday": null,
+        "group": "Other",
+        "created_at": "2026-04-28T20:25:40.812843",
+        "phones": [
+            {
+                "phone": "+77778665270",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "name": "Peter",
+        "email": "peter@example.com",
+        "birthday": "1995-05-15",
+        "group": null,
+        "created_at": "2026-04-27T23:22:10.396896",
+        "phones": [
+            {
+                "phone": "+77778665270",
+                "type": "home"
+            },
+            {
+                "phone": "+87778665270",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "TSIS1 Test Alpha",
+        "email": "alpha_updated@gmail.com",
+        "birthday": "2000-01-02",
+        "group": "Family",
+        "created_at": "2026-04-28T20:30:48.738910",
+        "phones": [
+            {
+                "phone": "+77019990001",
+                "type": "mobile"
+            },
+            {
+                "phone": "+77019990002",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "TSIS1 Test Beta",
+        "email": "beta@yahoo.com",
+        "birthday": "1999-12-31",
+        "group": "Work",
+        "created_at": "2026-04-28T20:30:48.738910",
+        "phones": [
+            {
+                "phone": "+77010000004",
+                "type": "mobile"
+            }
+        ]
+    }
+]

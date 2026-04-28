@@ -1,32 +1,35 @@
--- Clean up old structure
-DROP TABLE IF EXISTS phones CASCADE;
-DROP TABLE IF EXISTS contacts CASCADE;
-DROP TABLE IF EXISTS groups CASCADE;
-DROP TABLE IF EXISTS phonebook CASCADE; -- Remove old table from Practice 8
-
--- 1. Create Groups Table
-CREATE TABLE groups (
-    id   SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS groups (
+    id SERIAL PRIMARY KEY,
     name VARCHAR(50) UNIQUE NOT NULL
 );
 
--- Insert Default Groups
-INSERT INTO groups (name) VALUES ('Family'), ('Work'), ('Friend'), ('Other');
+INSERT INTO groups (name)
+VALUES
+    ('Family'),
+    ('Work'),
+    ('Friend'),
+    ('Other')
+ON CONFLICT (name) DO NOTHING;
 
--- 2. Create Contacts Table
-CREATE TABLE contacts (
-    id         SERIAL PRIMARY KEY,
-    name       VARCHAR(100) NOT NULL UNIQUE,
-    email      VARCHAR(100),
-    birthday   DATE,
-    group_id   INTEGER REFERENCES groups(id) ON DELETE SET NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS contacts (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(100),
+    birthday DATE,
+    group_id INTEGER REFERENCES groups(id),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- 3. Create Phones Table (1-to-many)
-CREATE TABLE phones (
+CREATE TABLE IF NOT EXISTS phones (
     id         SERIAL PRIMARY KEY,
     contact_id INTEGER REFERENCES contacts(id) ON DELETE CASCADE,
-    phone      VARCHAR(20)  NOT NULL,
-    type       VARCHAR(10)  CHECK (type IN ('home', 'work', 'mobile'))
+    phone      VARCHAR(20) NOT NULL,
+    type       VARCHAR(10) CHECK (type IN ('home', 'work', 'mobile')),
+    CONSTRAINT unique_contact_phone UNIQUE (contact_id, phone)
 );
+
+CREATE INDEX IF NOT EXISTS idx_contacts_name ON contacts(name);
+CREATE INDEX IF NOT EXISTS idx_contacts_email ON contacts(email);
+CREATE INDEX IF NOT EXISTS idx_contacts_group_id ON contacts(group_id);
+CREATE INDEX IF NOT EXISTS idx_phones_contact_id ON phones(contact_id);
+CREATE INDEX IF NOT EXISTS idx_phones_phone ON phones(phone);

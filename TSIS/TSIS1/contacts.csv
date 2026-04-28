@@ -1,0 +1,6 @@
+name,email,birthday,group,phone,type
+"Alice Smith",alice@example.com,1992-05-20,Friend,+77012223344,mobile
+"Bob Johnson",bob.j@work.com,1985-11-12,Work,+77775556677,work
+"Charlie Brown",charlie@gmail.com,2000-01-01,Family,+77051112233,home
+"Peter Parker",spidey@ny.com,1995-08-10,Other,+77479998877,mobile
+"Diana Prince",diana@themyscira.io,,Work,+77001110011,work

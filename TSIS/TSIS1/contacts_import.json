@@ -1,0 +1,88 @@
+[
+    {
+        "name": "Alice Johnson",
+        "email": "alice.work@gmail.com",
+        "birthday": "2001-05-15",
+        "group": "Friend",
+        "created_at": "2026-04-17T09:14:27.612452",
+        "phones": [
+            {
+                "phone": "+77011234567",
+                "type": "mobile"
+            },
+            {
+                "phone": "+77271234567",
+                "type": "work"
+            }
+        ]
+    },
+    {
+        "name": "Bob Smith",
+        "email": "bob@company.com",
+        "birthday": "1999-09-21",
+        "group": "Work",
+        "created_at": "2026-04-17T09:14:27.612452",
+        "phones": [
+            {
+                "phone": "+77017654321",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "name": "Carol White",
+        "email": "carol@yahoo.com",
+        "birthday": "2002-12-03",
+        "group": "Family",
+        "created_at": "2026-04-17T09:14:27.612452",
+        "phones": [
+            {
+                "phone": "+77019876543",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "Mukhamedali Beisaly",
+        "email": "asdas@fdfd.com",
+        "birthday": "2006-03-18",
+        "group": "4",
+        "created_at": "2026-04-17T09:14:21.472514",
+        "phones": [
+            {
+                "phone": "8778486748",
+                "type": "work"
+            }
+        ]
+    },
+    {
+        "name": "TSIS1 Test Alpha",
+        "email": "alpha_updated@gmail.com",
+        "birthday": "2000-01-02",
+        "group": "Family",
+        "created_at": "2026-04-17T09:13:04.510864",
+        "phones": [
+            {
+                "phone": "+77019990001",
+                "type": "mobile"
+            },
+            {
+                "phone": "+77019990002",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "TSIS1 Test Beta",
+        "email": "beta@yahoo.com",
+        "birthday": "1999-12-31",
+        "group": "Work",
+        "created_at": "2026-04-17T09:12:41.929580",
+        "phones": [
+            {
+                "phone": "+77010000004",
+                "type": "mobile"
+            }
+        ]
+    }
+]

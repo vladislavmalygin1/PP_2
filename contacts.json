@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Peter",
+        "email": "peter@example.com",
+        "birthday": "1995-05-15",
+        "group": null,
+        "phones": [
+            {
+                "phone": "+77778665270",
+                "type": "home"
+            },
+            {
+                "phone": "+87778665270",
+                "type": "home"
+            }
+        ]
+    }
+]
