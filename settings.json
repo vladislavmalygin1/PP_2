@@ -5,5 +5,8 @@
         0
     ],
     "grid_overlay": true,
-    "sound": false
+    "sound": true,
+    "color": "red",
+    "difficulty": 1,
+    "music": false
 }
