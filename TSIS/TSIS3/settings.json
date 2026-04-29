@@ -1,5 +1,5 @@
 {
-    "sound": true,
     "color": "red",
-    "difficulty": 1
+    "difficulty": 2,
+    "music": true
 }

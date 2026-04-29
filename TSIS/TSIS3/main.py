@@ -62,7 +62,7 @@ def settings_screen():
         b_back  = Button("SAVE & BACK", 100, 400, 200, 50, (150,150,150), (180,180,180))
         
         for event in pygame.event.get():
-            if b_back.is_clicked(event): save_data("settings.json", sets); return
+            if b_back.is_clicked(event): save_data(r"C:\Users\Bull\Desktop\PP_2\Practice1\TSIS\TSIS3\settings.json", sets); return
             if b_music.is_clicked(event):
                 sets['music'] = not sets.get('music', True)
                 if not sets['music']: pygame.mixer.music.stop()
