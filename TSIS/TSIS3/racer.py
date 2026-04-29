@@ -1,7 +1,7 @@
 import pygame, random, time, os, sys
 from pygame.locals import *
 
-# Path to your assets
+# Path to assets
 IMG_DIR = r"C:\Users\Bull\Desktop\PP_2\Practice1\TSIS\TSIS3\assets"
 
 def is_safe_distance(new_x, existing_sprites, min_dist=65):
