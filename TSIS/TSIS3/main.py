@@ -12,10 +12,7 @@ IMG_DIR = r"C:\Users\Bull\Desktop\PP_2\Practice1\TSIS\TSIS3\assets"
 def main_menu():
     username = "Player1"; active_input = False
     while True:
-        # Constant Refresh of Settings
         sets = load_data("settings.json", {"color": "red", "difficulty": 1, "music": True})
-        
-        # Kill music if turned off elsewhere
         if not sets.get('music', True) and pygame.mixer.music.get_busy():
             pygame.mixer.music.stop()
 
@@ -40,6 +37,7 @@ def main_menu():
                 while playing:
                     res = play_game(SCREEN, sets)
                     if res:
+                        # Fixed: distance is now guaranteed to be in res
                         update_leaderboard(username, res['score'], res['distance'])
                         if game_over_screen(SCREEN, res) == "menu": playing = False
                     else: playing = False
@@ -60,20 +58,16 @@ def settings_screen():
         b_color = Button(f"Car: {sets['color'].upper()}", 100, 150, 200, 50, (255,255,255), (200,200,200))
         b_diff  = Button(f"Diff: {sets['difficulty']}", 100, 230, 200, 50, (255,255,255), (200,200,200))
         b_back  = Button("SAVE & BACK", 100, 400, 200, 50, (150,150,150), (180,180,180))
-        
         for event in pygame.event.get():
-            if b_back.is_clicked(event): save_data(r"C:\Users\Bull\Desktop\PP_2\Practice1\TSIS\TSIS3\settings.json", sets); return
+            if b_back.is_clicked(event): save_data("settings.json", sets); return
             if b_music.is_clicked(event):
                 sets['music'] = not sets.get('music', True)
                 if not sets['music']: pygame.mixer.music.stop()
                 else: 
-                    try: 
-                        pygame.mixer.music.load(os.path.join(IMG_DIR, "music_2.mp3"))
-                        pygame.mixer.music.play(-1)
+                    try: pygame.mixer.music.load(os.path.join(IMG_DIR, "music_2.mp3")); pygame.mixer.music.play(-1)
                     except: pass
             if b_diff.is_clicked(event): sets['difficulty'] = (sets['difficulty'] % 3) + 1
             if b_color.is_clicked(event): sets['color'] = colors[(colors.index(sets['color']) + 1) % len(colors)]
-        
         for b in [b_music, b_color, b_diff, b_back]: b.draw(SCREEN)
         pygame.display.update()
 

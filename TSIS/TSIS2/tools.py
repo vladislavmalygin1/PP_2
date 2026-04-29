@@ -2,11 +2,9 @@ import pygame
 import math
 
 def flood_fill(surface, start_pos, fill_color):
-    """Fills a closed area using a stack-based flood fill algorithm."""
     width, height = surface.get_size()
     target_color = surface.get_at(start_pos)
-    if target_color == fill_color: 
-        return
+    if target_color == fill_color: return
     
     stack = [start_pos]
     while stack:
@@ -17,20 +15,16 @@ def flood_fill(surface, start_pos, fill_color):
                 stack.extend([(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)])
 
 def draw_line(surf, start, end, thickness, color):
-    """Handles freehand drawing for the Pencil."""
     pygame.draw.line(surf, color, start, end, thickness)
 
 def draw_eraser(surf, start, end, thickness):
-    """Handles erasing by drawing white lines."""
     pygame.draw.line(surf, (255, 255, 255), start, end, thickness)
 
 def draw_text(surf, text, pos, color, font):
-    """Renders and blits text onto the surface."""
     text_surf = font.render(text, True, color)
     surf.blit(text_surf, pos)
 
 def draw_shape(surf, mode, color, start, end, thickness):
-    """Calculates and draws polygons/shapes with current thickness."""
     x1, y1 = start
     x2, y2 = end
     dx, dy = x2 - x1, y2 - y1
