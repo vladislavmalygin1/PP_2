@@ -14,7 +14,7 @@ def save_data(filename, data):
         json.dump(data, f, indent=4)
 
 def update_leaderboard(name, score, distance):
-    lb = load_data(r"C:\Users\Bull\Desktop\PP_2\Practice1\TSIS\TSIS3\leaderboards.json", [])
+    lb = load_data(r"C:\Users\Bull\Desktop\PP_2\Practice1\TSIS\TSIS3\leaderboard.json", [])
     lb.append({"name": name, "score": score, "distance": int(distance)})
     lb = sorted(lb, key=lambda x: x['score'], reverse=True)[:10]
-    save_data(r"C:\Users\Bull\Desktop\PP_2\Practice1\TSIS\TSIS3\leaderboards.json", lb)
+    save_data(r"C:\Users\Bull\Desktop\PP_2\Practice1\TSIS\TSIS3\leaderboard.json", lb)
